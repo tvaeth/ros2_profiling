@@ -344,9 +344,11 @@ def _build_callback_events(
                         entry["callback"], entry["is_intra_process"]
                     )
                     cur_event._callback_start = entry["_timestamp"]
+                    cur_event._cpu_id = entry["cpu_id"]
             else:
                 if entry["_name"] == constants.ROS_CALLBACK_END:
                     cur_event._callback_end = entry["_timestamp"]
+                    cur_event._cpu_id = entry["cpu_id"]
                     callback_events.append(cur_event)
                     cur_event = None
 

@@ -118,6 +118,10 @@ class CallbackEvent:
     def duration(self) -> int:
         return self.end() - self.start()
 
+    @property
+    def cpu_id(self) -> int:
+        return self._cpu_id
+
     def __repr__(self) -> str:
         content = " ".join([
             f"handle={self._callback_handle}",

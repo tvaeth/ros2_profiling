@@ -25,6 +25,7 @@ class EventSequence():
         self.start_event = start_event
         self.end_event = end_event
         self.sequence: List[Any] = []
+        self.cpu_id = -1
 
         self._build_sequence(self.end_event, self.start_event)
 
@@ -63,6 +64,7 @@ class EventSequence():
                         'topic': event.source.name,
                         'timestamp': event.start()
                     })
+                self.cpu_id = event.cpu_id
                 event = event.trigger
             elif isinstance(event, SubscriptionEvent):
                 for stamp_key, stamp_value in event._stamps.items():
