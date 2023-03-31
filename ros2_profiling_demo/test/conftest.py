@@ -1,6 +1,7 @@
 import pytest
 
 from ros2profile.api.process import load_mcap_data, load_event_graph
+from ros2profile.data.convert.ctf import load_ctf
 
 
 def pytest_addoption(parser):
@@ -27,3 +28,10 @@ def profile_event_graph(request):
     if input_dir is None:
         pytest.skip()
     return load_event_graph(input_dir)
+
+@pytest.fixture(scope='session')
+def profile_events(request):
+    input_dir = request.config.option.input_dir
+    if input_dir is None:
+        pytest.skip()
+    return load_ctf(input_dir)
